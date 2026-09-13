@@ -2,6 +2,8 @@
 
 大学生・専門学生向けに「あと何回休めるか」「期末試験であと何点必要か」「最終成績は何点になるか」を計算できるWebサービスです。出席や成績の数字から、単位取得までの見通しを確認できます。
 
+公開URL：[https://tani-safety.pages.dev/](https://tani-safety.pages.dev/)
+
 ## 主な機能
 
 - **出席セーフティ**：総授業回数、現在までの授業回数、欠席回数、必要出席率から、現在の出席率と追加で欠席できる回数を計算します。出席条件を満たせない見込みの場合は警告します。
@@ -40,14 +42,34 @@
 
 | ファイル | 役割 |
 | --- | --- |
-| `index.html` | 3つの計算フォーム、検索向けのタイトル・説明、使い方、FAQ |
+| `index.html` | 計算フォーム、説明・FAQ、SEO・SNS共有用metaタグ、FAQ構造化データ |
 | `style.css` | 白・緑基調のカードUI、状態別の色、スマートフォン向けのレイアウト |
 | `script.js` | 入力チェック、3つの計算処理、結果・警告の表示 |
+| `favicon.svg` | サイトの緑色に合わせた白いチェックマークのSVGアイコン |
+| `robots.txt` | クロールの許可とサイトマップの場所を指定 |
+| `sitemap.xml` | 公開トップページのURLを記載 |
 | `README.md` | サービス概要、利用方法、ファイル構成、注意事項 |
 
 ## 公開について
 
-Cloudflare Pagesで公開できる静的ファイル構成です。公開するディレクトリの直下に`index.html`、`style.css`、`script.js`を配置してください。依存パッケージのインストール、ビルド、APIキー、環境変数、サーバー側の処理は不要です。
+Cloudflare Pagesで公開できる静的ファイル構成です。公開するディレクトリの直下に`index.html`、`style.css`、`script.js`、`favicon.svg`、`robots.txt`、`sitemap.xml`を配置してください。依存パッケージのインストール、ビルド、APIキー、環境変数、サーバー側の処理は不要です。
+
+## SEO・SNS共有対応
+
+- 日本語として自然なページタイトルとmeta descriptionを設定しています。
+- `favicon.svg`をheadの`link rel="icon"`から読み込みます。
+- OGPにタイトル・説明・種類（website）・公開URL・サイト名・言語を設定しています。
+- Twitter Cardは`summary`形式で、タイトルと説明を設定しています。SNS共有用の画像は未設定です。
+- canonicalと`og:url`は`https://tani-safety.pages.dev/`に統一しています。
+- FAQPageのJSON-LD構造化データをheadに記載しています。FAQの質問・回答を変更する際は、画面のFAQとJSON-LDを同時に更新してください。
+- `robots.txt`はすべての検索エンジンのクロールを許可し、`https://tani-safety.pages.dev/sitemap.xml`を案内します。
+- `sitemap.xml`にはトップページの正規URLのみを掲載しています。
+
+### Search Console対応
+
+Google Search Consoleの所有権確認用metaタグ（`google-site-verification`）を、`index.html`のhead内にある`Google Search Console verification`コメントの直後へ追加済みです。公開サイトへデプロイした後、Search Consoleで所有権確認を行い、`sitemap.xml`を送信してください。タグの追加だけでは所有権確認の完了を意味しません。
+
+公開URLを変更する場合は、canonical・OGP・robots.txt・sitemap.xml・このREADMEのURLをまとめて更新してください。
 
 ## 今後追加予定
 

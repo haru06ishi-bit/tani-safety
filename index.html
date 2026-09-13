@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="大学の授業をあと何回休めるか、期末試験であと何点必要かを無料で計算。出席率・必要点数・最終成績を簡単にシミュレーションできる大学生・専門学生向けWebツールです。">
+  <title>あと何回休める？大学の出席・単位計算｜単位セーフティ</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="./"><span class="brand-icon" aria-hidden="true">✓</span>単位セーフティ<span class="brand-tag">学生のための計算ツール</span></a><span class="header-note">登録不要・すぐに使える</span></header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow"><span></span> YOUR CAMPUS COMPANION</p>
+      <h1>単位の見通しを、<br class="mobile-break">ひと目で。</h1>
+      <p class="hero-description">あと何回休める？ テストで何点必要？<br>気になる授業の「大丈夫？」を、さっと確認。</p>
+      <div class="hero-chips"><span>✓ 無料で使える</span><span>✓ データ送信なし</span><span>✓ スマホ対応</span></div>
+    </section>
+    <nav class="tool-nav" aria-label="計算ツール"><a href="#attendance"><span>01</span> 出席セーフティ</a><a href="#required"><span>02</span> 必要点数計算</a><a href="#grade"><span>03</span> 最終成績</a></nav>
+    <section class="tools" aria-label="単位計算ツール">
+      <article class="card" id="attendance">
+        <div class="card-heading"><span class="tool-icon" aria-hidden="true">▦</span><span class="step">TOOL 01</span></div>
+        <h2>出席セーフティ</h2><p class="card-description">あと何回休めるか、余裕をチェック。</p>
+        <form id="attendance-form" novalidate>
+          <div class="field-grid"><label>総授業回数<div class="input-wrap"><input id="total" type="number" min="1" max="10000" step="1" value="15" required inputmode="numeric"><span>回</span></div></label><label>現在までの授業回数<div class="input-wrap"><input id="held" type="number" min="0" max="10000" step="1" value="8" required inputmode="numeric"><span>回</span></div></label><label>現在の欠席回数<div class="input-wrap"><input id="absent" type="number" min="0" max="10000" step="1" value="1" required inputmode="numeric"><span>回</span></div></label><label>必要出席率<div class="input-wrap"><input id="rate" type="number" min="0" max="100" step="any" value="80" required inputmode="decimal"><span>%</span></div></label></div>
+          <p class="input-hint">現在までの授業回数には、欠席した回も含めます。</p>
+          <button type="submit">出席の余裕をチェック <span aria-hidden="true">→</span></button>
+          <div class="result" id="attendance-result" role="status" aria-live="polite" aria-atomic="true"></div>
+        </form>
+        <p class="card-note">必要な出席回数は切り上げて計算。遅刻・早退の扱いは含みません。</p>
+      </article>
+      <article class="card" id="required">
+        <div class="card-heading"><span class="tool-icon blue" aria-hidden="true">◎</span><span class="step">TOOL 02</span></div>
+        <h2>必要点数計算</h2><p class="card-description">合格までに必要な点数を逆算。</p>
+        <form id="required-form" novalidate>
+          <label>合格ライン<div class="input-wrap"><input id="pass" type="number" min="0" max="100" step="any" value="60" required inputmode="decimal"><span>点</span></div></label>
+          <div class="field-grid">
+            <label>課題の点数<div class="input-wrap"><input id="required-assignment-score" type="number" min="0" max="100" step="any" value="80" required inputmode="decimal"><span>点</span></div></label>
+            <label>課題の割合<div class="input-wrap"><input id="required-assignment-weight" type="number" min="0" max="100" step="any" value="30" required inputmode="decimal" aria-describedby="weight-help assignment-help"><span>%</span></div><span class="field-help" id="assignment-help">「課題30%」なら30を入力。</span></label>
+            <label>中間試験の点数<div class="input-wrap"><input id="required-midterm-score" type="number" min="0" max="100" step="any" value="70" required inputmode="decimal"><span>点</span></div></label>
+            <label>中間試験の割合<div class="input-wrap"><input id="required-midterm-weight" type="number" min="0" max="100" step="any" value="30" required inputmode="decimal" aria-describedby="weight-help midterm-help"><span>%</span></div><span class="field-help" id="midterm-help">「中間30%」なら30を入力。</span></label>
+          </div>
+          <label>これから受ける期末試験の割合<div class="input-wrap"><input id="required-final-weight" type="number" min="0" max="100" step="any" value="40" required inputmode="decimal" aria-describedby="weight-help final-help"><span>%</span></div><span class="field-help" id="final-help">「期末40%」なら40を入力。</span></label>
+          <p class="input-hint" id="weight-help">割合は最終成績全体に占める比率です。シラバスを確認し、合計100%にしてください。各点数は100点満点で入力します。</p>
+          <button type="submit">必要な点数をチェック <span aria-hidden="true">→</span></button>
+          <div class="result" id="required-result" role="status" aria-live="polite" aria-atomic="true"></div>
+        </form>
+        <p class="card-note">期末試験は100点満点として計算します。出席や試験受験などの必須条件は別途確認してください。</p>
+      </article>
+      <article class="card" id="grade">
+        <div class="card-heading"><span class="tool-icon purple" aria-hidden="true">▥</span><span class="step">TOOL 03</span></div>
+        <h2>最終成績シミュレーター</h2><p class="card-description">点数と割合から、成績を予測。</p>
+        <form id="grade-form" novalidate>
+          <div class="grade-header" aria-hidden="true"><span>評価項目</span><span>点数 / 100</span><span>割合</span></div>
+          <div class="grade-row"><span>課題</span><div class="input-wrap"><input id="assignment-score" aria-label="課題の点数（100点満点）" type="number" min="0" max="100" step="any" value="85" required inputmode="decimal"><span>点</span></div><div class="input-wrap"><input id="assignment-weight" aria-label="課題の割合" type="number" min="0" max="100" step="any" value="30" required inputmode="decimal"><span>%</span></div></div>
+          <div class="grade-row"><span>中間試験</span><div class="input-wrap"><input id="midterm-score" aria-label="中間試験の点数（100点満点）" type="number" min="0" max="100" step="any" value="70" required inputmode="decimal"><span>点</span></div><div class="input-wrap"><input id="midterm-weight" aria-label="中間試験の割合" type="number" min="0" max="100" step="any" value="30" required inputmode="decimal"><span>%</span></div></div>
+          <div class="grade-row"><span>期末試験</span><div class="input-wrap"><input id="final-score" aria-label="期末試験の点数（100点満点）" type="number" min="0" max="100" step="any" value="80" required inputmode="decimal"><span>点</span></div><div class="input-wrap"><input id="final-weight" aria-label="期末試験の割合" type="number" min="0" max="100" step="any" value="40" required inputmode="decimal"><span>%</span></div></div>
+          <p class="input-hint">割合の合計が100%になるように入力してください。</p>
+          <button type="submit">最終成績をシミュレーション <span aria-hidden="true">→</span></button>
+          <div class="result" id="grade-result" role="status" aria-live="polite" aria-atomic="true"></div>
+        </form>
+        <p class="card-note">評価目安：S ≥ 90 / A ≥ 80 / B ≥ 70 / C ≥ 60 / 不可 &lt; 60。評価は丸める前の点数で判定します。</p>
+      </article>
+    </section>
+    <section class="info-section" aria-labelledby="about-heading">
+      <h2 id="about-heading">このサイトでできること</h2>
+      <p class="section-intro">単位セーフティは、大学生・専門学生のための無料計算ツールです。出席や成績の数字を入力して、授業ごとの見通しを確認できます。</p>
+      <div class="info-grid">
+        <article class="info-card"><h3>あと何回授業を欠席できるか確認</h3><p>授業回数と欠席回数、必要出席率から、現在の出席率とあと何回欠席できるかを確認できます。</p><a href="#attendance">出席セーフティを使う →</a></article>
+        <article class="info-card"><h3>期末試験で最低何点必要か計算</h3><p>課題・中間試験の点数と成績割合から、合格ラインに届くための期末試験の必要点数を計算できます。</p><a href="#required">必要点数を計算する →</a></article>
+        <article class="info-card"><h3>課題、中間、期末から最終成績を予測</h3><p>それぞれの点数と割合を組み合わせて、最終成績とS・A・B・C・不可の評価目安を確認できます。</p><a href="#grade">最終成績を予測する →</a></article>
+      </div>
+    </section>
+    <section class="info-section" aria-labelledby="usage-heading">
+      <h2 id="usage-heading">使い方</h2>
+      <ol class="info-grid usage-list">
+        <li class="info-card"><span class="step-number">STEP 1</span><h3>授業や成績の数字を入力</h3><p>確認したいツールを選び、シラバスや成績表を見ながら数字を入力します。最初の数字は入力例です。</p></li>
+        <li class="info-card"><span class="step-number">STEP 2</span><h3>計算ボタンを押す</h3><p>各カードの緑色のボタンを押します。数字を変更したときは、もう一度ボタンを押してください。</p></li>
+        <li class="info-card"><span class="step-number">STEP 3</span><h3>単位取得までの余裕を確認</h3><p>大きく表示される結果とメッセージを確認し、これからの出席や試験勉強の計画に役立てましょう。</p></li>
+      </ol>
+    </section>
+    <section class="info-section faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">よくある質問</h2>
+      <details><summary>計算結果は正確ですか？</summary><p>入力した条件をもとに計算しますが、実際の単位認定条件は授業ごとに異なります。シラバスや担当教員の案内も確認してください。</p></details>
+      <details><summary>入力したデータは保存されますか？</summary><p>このサイトは入力したデータを保存・送信しません。すべてブラウザ内で計算します。</p></details>
+      <details><summary>大学以外でも使えますか？</summary><p>専門学校など、出席率や点数による評価がある授業でも利用できます。授業の評価方法に合わせて入力してください。</p></details>
+    </section>
+    <aside class="notice"><span class="notice-icon" aria-hidden="true">i</span><div><h2>シラバスの確認も忘れずに。</h2><p>計算結果は目安です。出席条件や評価基準は学校・授業によって異なります。実際の単位取得条件は、シラバスや担当教員の案内を確認してください。</p></div></aside>
+  </main>
+  <footer><a class="footer-brand" href="./">✓ 単位セーフティ</a><p>学生生活に、ちょっとした安心を。</p><span>入力内容は保存・送信されません。</span></footer>
+</body>
+</html>

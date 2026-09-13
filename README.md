@@ -46,20 +46,23 @@
 | `style.css` | 白・緑基調のカードUI、状態別の色、スマートフォン向けのレイアウト |
 | `script.js` | 入力チェック、3つの計算処理、結果・警告の表示 |
 | `favicon.svg` | サイトの緑色に合わせた白いチェックマークのSVGアイコン |
+| `og-image.png` | OGP・Twitter Cardで使用するSNS共有用画像 |
 | `robots.txt` | クロールの許可とサイトマップの場所を指定 |
 | `sitemap.xml` | 公開トップページのURLを記載 |
 | `README.md` | サービス概要、利用方法、ファイル構成、注意事項 |
 
 ## 公開について
 
-Cloudflare Pagesで公開できる静的ファイル構成です。公開するディレクトリの直下に`index.html`、`style.css`、`script.js`、`favicon.svg`、`robots.txt`、`sitemap.xml`を配置してください。依存パッケージのインストール、ビルド、APIキー、環境変数、サーバー側の処理は不要です。
+Cloudflare Pagesで公開できる静的ファイル構成です。公開するディレクトリの直下に`index.html`、`style.css`、`script.js`、`favicon.svg`、`og-image.png`、`robots.txt`、`sitemap.xml`を配置してください。依存パッケージのインストール、ビルド、APIキー、環境変数、サーバー側の処理は不要です。
 
 ## SEO・SNS共有対応
 
 - 日本語として自然なページタイトルとmeta descriptionを設定しています。
 - `favicon.svg`をheadの`link rel="icon"`から読み込みます。
-- OGPにタイトル・説明・種類（website）・公開URL・サイト名・言語を設定しています。
-- Twitter Cardは`summary`形式で、タイトルと説明を設定しています。SNS共有用の画像は未設定です。
+- OGPにタイトル・説明・種類（website）・公開URL・サイト名・言語・共有画像・画像サイズ（1200×630）・代替テキストを設定しています。
+- Twitter Cardは`summary_large_image`形式で、タイトル・説明・共有画像を設定しています。
+- OGPとTwitter Cardの画像URLは`https://tani-safety.pages.dev/og-image.png`です。画像を`index.html`と同じ階層に配置し、一緒にデプロイしてください。
+- 現在の画像ファイルの実サイズは1729×910pxです。指定されたmetaタグの1200×630とは異なります。公開前に画像を1200×630pxで書き出し直すと、宣言サイズと一致します。
 - canonicalと`og:url`は`https://tani-safety.pages.dev/`に統一しています。
 - FAQPageのJSON-LD構造化データをheadに記載しています。FAQの質問・回答を変更する際は、画面のFAQとJSON-LDを同時に更新してください。
 - `robots.txt`はすべての検索エンジンのクロールを許可し、`https://tani-safety.pages.dev/sitemap.xml`を案内します。

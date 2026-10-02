@@ -2,7 +2,7 @@
 
 大学生・専門学生向けに「あと何回休めるか」「期末試験であと何点必要か」「最終成績は何点になるか」を計算できるWebサービスです。出席や成績の数字から、単位取得までの見通しを確認できます。
 
-公開URL：[https://tani-safety.pages.dev/](https://tani-safety.pages.dev/)
+正式な公開URL：[https://tani-safety.mytools-lab.com/](https://tani-safety.mytools-lab.com/)
 
 ## 主な機能
 
@@ -53,6 +53,8 @@
 
 ## 公開について
 
+Cloudflare Pagesのカスタムドメイン設定により、正式な公開URLは`https://tani-safety.mytools-lab.com/`です。canonical・OGP・Twitter Cardの画像URL・サイトマップ・robots.txtのSitemap指定は、この独自ドメインに統一しています。
+
 Cloudflare Pagesで公開できる静的ファイル構成です。公開するディレクトリの直下に`index.html`、`style.css`、`script.js`、`favicon.svg`、`og-image.png`、`robots.txt`、`sitemap.xml`を配置してください。依存パッケージのインストール、ビルド、APIキー、環境変数、サーバー側の処理は不要です。
 
 ## SEO・SNS共有対応
@@ -61,11 +63,11 @@ Cloudflare Pagesで公開できる静的ファイル構成です。公開する�
 - `favicon.svg`をheadの`link rel="icon"`から読み込みます。
 - OGPにタイトル・説明・種類（website）・公開URL・サイト名・言語・共有画像・画像サイズ（1200×630）・代替テキストを設定しています。
 - Twitter Cardは`summary_large_image`形式で、タイトル・説明・共有画像を設定しています。
-- OGPとTwitter Cardの画像URLは`https://tani-safety.pages.dev/og-image.png`です。画像を`index.html`と同じ階層に配置し、一緒にデプロイしてください。
+- OGPとTwitter Cardの画像URLは`https://tani-safety.mytools-lab.com/og-image.png`です。画像を`index.html`と同じ階層に配置し、一緒にデプロイしてください。
 - 現在の画像ファイルの実サイズは1729×910pxです。指定されたmetaタグの1200×630とは異なります。公開前に画像を1200×630pxで書き出し直すと、宣言サイズと一致します。
-- canonicalと`og:url`は`https://tani-safety.pages.dev/`に統一しています。
+- canonicalと`og:url`は`https://tani-safety.mytools-lab.com/`に統一しています。
 - FAQPageのJSON-LD構造化データをheadに記載しています。FAQの質問・回答を変更する際は、画面のFAQとJSON-LDを同時に更新してください。
-- `robots.txt`はすべての検索エンジンのクロールを許可し、`https://tani-safety.pages.dev/sitemap.xml`を案内します。
+- `robots.txt`はすべての検索エンジンのクロールを許可し、`https://tani-safety.mytools-lab.com/sitemap.xml`を案内します。
 - `sitemap.xml`にはトップページの正規URLのみを掲載しています。
 
 ### Search Console対応

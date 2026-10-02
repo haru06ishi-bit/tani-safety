@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tani-safety.pages.dev/sitemap.xml
+Sitemap: https://tani-safety.mytools-lab.com/sitemap.xml
